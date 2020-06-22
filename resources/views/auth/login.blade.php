@@ -27,8 +27,7 @@
         <div class="row">
             <div class="col-md-3">
               <div class="login-logo">
-        <img src="./image/logo/logo_2.png"/><br>
-      <a href="/"><b>School </b>App</a>
+        <img src="./image/logo/logo_1.png" class="w-100"/>
     </div> 
             </div>
             <div class="col-md-6">
@@ -39,7 +38,7 @@
                     <form action="/login" method="post">
                         @csrf
                       <div class="input-group mb-3">
-                        <input type="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email" name="email" value="admin@schoolapp.info" required autocomplete="email" autofocus>
+                        <input type="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email" name="email" required autocomplete="email" autofocus>
                        
                         <div class="input-group-append">
                           <div class="input-group-text">
@@ -53,7 +52,7 @@
                     @enderror
                       </div>
                       <div class="input-group mb-3">
-                        <input type="password" class="form-control @error('email') is-invalid @enderror" placeholder="Password" value="admin123"  name="password" required autocomplete="current-password">
+                        <input type="password" class="form-control @error('email') is-invalid @enderror" placeholder="Password" name="password" required autocomplete="current-password">
                         <div class="input-group-append">
                           <div class="input-group-text">
                             <span class="fas fa-lock"></span>
@@ -81,9 +80,9 @@
                         <!-- /.col -->
                       </div>
                     </form>
-                    <p>This is demo admin control panel of School App for testing purposes.
-Please login with given user id & password to check the admin features.
-Call us or send whatsapp for any query -<a href="whatsapp://send?text=Hello , I'm interested in your school app.&phone=+919352529594">9352529594</a> </p>
+<!--                    <p>This is demo admin control panel of School App for testing purposes.-->
+<!--Please login with given user id & password to check the admin features.-->
+<!--Call us or send whatsapp for any query -<a href="whatsapp://send?text=Hello , I'm interested in your school app.&phone=+919352529594">9352529594</a> </p>-->
               
                     
                     <!-- /.social-auth-links -->

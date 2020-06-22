@@ -12,7 +12,7 @@
     <meta property="og:description" content="This is demo admin control panel of School App for testing purposes.
     Please login with given user id & password to check the admin features.
     Call us or send whatsapp for any query - 9352529594" />
-    <meta property="og:image" itemprop="image" content="./image/logo/logo_2.png">
+    <meta property="og:image" itemprop="image" content="../image/logo/logo_2.jpg">
     <meta property="og:type" content="website" />
     <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
@@ -146,9 +146,9 @@
         </nav>
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <a href="/home" class="brand-link">
-                <img src="{{asset('image\logo\logo_1.png')}}" alt="School App Logo" class="brand-image img-circle elevation-3"
+                <img src="{{asset('image\logo\logo_2.png')}}" alt="School App Logo" class="brand-image img-circle elevation-3"
                     style="opacity: .8">
-                <span class="brand-text font-weight-light">SchoolApp</span>
+                <span class="brand-text font-weight-light">Aryan Public School</span>
             </a>
             <div class="sidebar">
                 <nav class="mt-2">

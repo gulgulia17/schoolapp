@@ -172,7 +172,7 @@ class StudentController extends Controller
             'address'   => 'required |string',
             'images'    => 'required|mimes:png,jpg,jpeg|file|max:10000',
         ]);
-        $data['username'] = strtolower(substr($data['sname'], 0, 4) . implode('', explode('-', implode('', explode('/', $data['dob'])))));
+        $data['username'] = strtolower(substr($data['name'], 0, 4) . implode('', explode('-', implode('', explode('/', $data['dob'])))));
         $data['password'] = Hash::make('12345678');
         return $data;
     }

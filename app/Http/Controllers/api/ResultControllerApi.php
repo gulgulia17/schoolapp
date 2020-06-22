@@ -17,10 +17,10 @@ class ResultControllerApi extends Controller
     public function index($student_id)
     {
         $tot = null ;
-        $data = null;
-        $student= student::where('id',$student_id )->first()->toArray();
-        $result = result::where('student_id',$student_id )->where('status', '1')->first()->toArray();
-        if(count($result)){
+        $data = [];
+        $student= student::where('id',$student_id )->first();
+        $result = result::where('student_id',$student_id )->where('status', '1')->first();
+        if(isset($result) && !empty($result)){
             $data = [
                 'id'         => $result['id'],
                 'studentName'=> $student['name'],

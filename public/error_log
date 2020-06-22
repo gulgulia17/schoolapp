@@ -1,0 +1,2 @@
+[22-Jun-2020 11:05:16 UTC] PHP Warning:  require(/home/schoolapp/public_html/aps/public/../vendor/autoload.php): failed to open stream: No such file or directory in /home/schoolapp/public_html/aps/public/index.php on line 24
+[22-Jun-2020 11:05:16 UTC] PHP Fatal error:  require(): Failed opening required '/home/schoolapp/public_html/aps/public/../vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php72/root/usr/share/pear') in /home/schoolapp/public_html/aps/public/index.php on line 24

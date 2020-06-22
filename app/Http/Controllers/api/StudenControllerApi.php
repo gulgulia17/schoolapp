@@ -12,13 +12,13 @@ class StudenControllerApi extends Controller
     public function reset(Request $request)
     {
         $data = [
-            'phone' => $request->username,
+            'username' => $request->username,
             'currentpassword' => $request->currentpassword,
             'newpassword' => $request->newpassword,
             'confirmpassword' => $request->confirmpassword,
         ];
-        $studentData = student::where('phone',$data['phone'])->first();
-        $currentpassword = student::where('phone',$data['phone'])->pluck('password')->first();
+        $studentData = student::where('username',$data['username'])->first();
+        $currentpassword = student::where('username',$data['username'])->pluck('password')->first();
         $error;$success;
         if (isset($currentpassword) && isset($data['newpassword'])) {
             if (Hash::check($data['currentpassword'],$currentpassword)) {
@@ -47,9 +47,9 @@ class StudenControllerApi extends Controller
         
       $username    = $request->username;
       $password    = $request->password;
-      $data        = student::where('phone', $username)->first();
-      $studentDetails = student::where('phone', $username)->first();
-      if(isset($data->phone)){
+      $data        = student::where('username', $username)->first();
+      $studentDetails = student::where('username', $username)->first();
+      if(isset($data->username)){
           if (Hash::check($password, $data->password)) {
               $temp=[
                   'msg' => "Logged",
@@ -61,14 +61,14 @@ class StudenControllerApi extends Controller
               return  json_encode($temp);
           }
       }else{
-        $temp="Invalid phone number";
+        $temp="Invalid username.";
         return  json_encode($temp);
       }
     }
 
 
     public function StudentDetail($id){
-        $temp = student::where('phone',$id)->first();
+        $temp = student::where('username',$id)->first();
         $StudentData = [
             'studentName' => $temp->name,
             'fatherName' => $temp->fname,

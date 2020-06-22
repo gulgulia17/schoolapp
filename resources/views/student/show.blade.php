@@ -53,10 +53,11 @@
                         @enderror
                         </div>
                     <div class="col-md-4">
+                        
                         <select required name="class_id" id="" class="form-control">
                             <option>Please Select class</option>
                             @foreach ($clas as $item)
-                            <option value="{{$item->id}}" {{$item->class == $student-> ? 'selected' : ''}}>{{$item->class}}</option>
+                            <option value="{{$item->id}}" {{$item->id == $student->class_id ? 'selected' : ''}}>{{$item->class}}</option>
                             @endforeach
                         </select>
                         @error('class')
