@@ -41,3 +41,4 @@ Route::get('/resultshow/{student_id},{class_id}','api\ResultControllerApi@show')
 Route::get('/fees/{student_id}','api\FeesControllerApi@index');
 Route::get('/downloads','api\DownloadableResourcesControllerApi@index');
 
+Route::post('/submit','SubmitController@index');
