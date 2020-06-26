@@ -99,4 +99,7 @@ Route::group(['middleware' => ['web','auth',]],function(){
     // Change Password
     Route::get('password/change','Auth\PasswordChangeController@showChangePasswordForm')->name('password.change');
     Route::POST('/password/change', 'Auth\PasswordChangeController@changePassword');
+
+    //Video Classes
+    Route::resource('/video', 'VideoClassController');
 });
