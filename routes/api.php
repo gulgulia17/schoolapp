@@ -40,4 +40,8 @@ Route::get('/resultshow/{student_id},{class_id}','api\ResultControllerApi@show')
 
 Route::get('/fees/{student_id}','api\FeesControllerApi@index');
 Route::get('/downloads','api\DownloadableResourcesControllerApi@index');
+Route::get('/videoclass/live/{class_id}','api\VideoClassControllerApi@live');
+Route::get('/videoclass/record/{class_id}','api\VideoClassControllerApi@record');
+
+Route::post('/homework','api\HomeWorkControllerApi@store');
 
