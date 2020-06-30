@@ -34,7 +34,6 @@ class HomeController extends Controller
             $percante = floor((($present/$students)*100));
             return view('home',compact('students','percante'));
         }
-        
-        
     }
+    
 }

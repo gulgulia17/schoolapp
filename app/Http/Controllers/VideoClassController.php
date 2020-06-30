@@ -91,6 +91,7 @@ class VideoClassController extends Controller
             'class_id' => 'required | string',
             'url' => 'required | string',
             'status' => 'required | string',
+            'title' => 'required | string',
         ]);
     }
 }

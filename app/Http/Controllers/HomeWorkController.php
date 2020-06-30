@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\classes;
 use App\HomeWork;
 use Illuminate\Http\Request;
 
@@ -25,7 +26,7 @@ class HomeWorkController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -36,7 +37,12 @@ class HomeWorkController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data =  Homework::where('class_id' , $request->classes)->get();
+        if(empty($data)){
+            return "Data Not Found";
+        }else{
+            return $data;
+        }
     }
 
     /**

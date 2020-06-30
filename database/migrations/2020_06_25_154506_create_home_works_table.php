@@ -16,6 +16,7 @@ class CreateHomeWorksTable extends Migration
         Schema::create('home_works', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('student_id');
+            $table->string('class_id');
             $table->string('title');
             $table->string('description');
             $table->string('file');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\api;
 
+use App\student;
 use App\HomeWork;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -18,12 +19,17 @@ class HomeWorkControllerApi extends Controller
 
     private function ValidateRequest()
     {
-        return Request()->validate([
+        $class_id = student::where('id', request()->student_id)->first();
+        $data = Request()->validate([
             'student_id'  => 'string | required',
             'title'       => 'string | required',
             'description' => 'string | required',
             'file'        => 'string | required',
+            'class_id'    => 'string | required',
         ]);
+        $data['class_id'] = $class_id->class_id;
+        dd($data);
+        return $data;
     }
     protected function storedImage($paper)
     {

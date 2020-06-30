@@ -17,6 +17,10 @@
                             @endforeach
                         </select>
                     </div>
+                    <div class="form-group">
+                      <label for="title">Title</label>
+                      <input type="text" name="title" id="title" class="form-control" placeholder="Enter Video Title" >
+                    </div>
                     {{-- <div class="from-group">
                         <select name="sub" id="">
                             <option disabled>Select Subject</option>
@@ -26,6 +30,7 @@
                         </select>
                     </div> --}}
                     <div class="form-group">
+                        <label for="url">Url</label>
                         <input type="text" name="url" class="form-control" placeholder="Enter Your Youtube Live Video Url" id="">
                         <input type="text" name="status" value="1" hidden class="form-control">
                     </div>
@@ -51,6 +56,10 @@
                             @endforeach
                         </select>
                     </div>
+                    <div class="form-group">
+                      <label for="title">Title</label>
+                      <input type="text" name="title" id="title" class="form-control" placeholder="Enter Video Title" >
+                    </div>
                     {{-- <div class="from-group">
                         <select name="sub" id="">
                             <option disabled>Select Subject</option>
@@ -60,6 +69,8 @@
                         </select>
                     </div> --}}
                     <div class="form-group">
+                        <label for="url">Url</label>
+
                         <input type="text" name="url" class="form-control" placeholder="Enter Your Youtube Live Video Url" id="">
                         <input type="text" name="status" value="0" hidden class="form-control">
                     </div>

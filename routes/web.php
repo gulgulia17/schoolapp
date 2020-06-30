@@ -18,6 +18,8 @@ Route::get('/', function () {
     return view('/auth.login');
 });
 
+Route::get('/apkdownload', 'helperController@download');
+
 Auth::routes();
 Route::group(['middleware' => ['web','auth',]],function(){
     Route::get('/home', 'HomeController@index')->name('home');
@@ -102,4 +104,5 @@ Route::group(['middleware' => ['web','auth',]],function(){
 
     //Video Classes
     Route::resource('/video', 'VideoClassController');
+    Route::resource('/homework', 'HomeworkController');
 });
