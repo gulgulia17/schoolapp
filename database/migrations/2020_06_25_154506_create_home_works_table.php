@@ -15,10 +15,14 @@ class CreateHomeWorksTable extends Migration
     {
         Schema::create('home_works', function (Blueprint $table) {
             $table->bigIncrements('id');
+<<<<<<< HEAD
             $table->string('student_id');
             $table->string('class_id');
+=======
+            $table->integer('student_id');
+>>>>>>> b3dd90ea451fdf55050152efbc33cb7fd5f7297f
             $table->string('title');
-            $table->string('description');
+            $table->longText('description');
             $table->string('file');
             $table->timestamps();
         });
