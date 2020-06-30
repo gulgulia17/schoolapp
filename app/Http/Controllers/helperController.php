@@ -2,96 +2,58 @@
 
 namespace App\Http\Controllers;
 
-use App\classes;
-use App\student;
-use Illuminate\Http\Request;
-
-class helperController extends Controller
+class HelperController extends Controller
 {
-//     import React from 'react';
-// import {
-//   StyleSheet,
-//   View,
-//   Text,
-// } from 'react-native';
-// import {
-//   LineChart,
-// } from "react-native-chart-kit";
-// import { Dimensions } from "react-native";
+    public static function extractVideoId($video_url)
+    {
+        $parsed_url = parse_url($video_url);
 
-// const App: () => React$Node = () => {
-//   return (
-//     <View style={styles.container}>
-//   <Text style={styles.powerBy}>Student Growth Chart</Text>
-//   <LineChart
-//     data={{
-//       labels: ["Unit Test 1", "Unit Test 2", "Half Year", "Unit Test 3", "Annual"],
-//       datasets: [
-//         {
-//           data: [
-//             80,
-//             50,
-//             45,
-//             90,
-//             40
-//           ]
-//         }
-//       ]
-//     }}
-//     width={Dimensions.get("window").width} // from react-native
-//     height={300}
-//     yAxisSuffix="%"
-//     yAxisInterval={1} // optional, defaults to 1
-//     fromZero={true}
-//     chartConfig={{
-//       backgroundColor: "#004677",
-//       backgroundGradientFrom: "#004677",
-//       backgroundGradientTo: "#004677",
-//       decimalPlaces: 2, // optional, defaults to 2dp
-//       color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-//       labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-//       style: {
-//         borderRadius: 16
-//       },
-//       propsForDots: {
-//         r: "6",
-//         strokeWidth: "2",
-//         stroke: "#ffa726"
-//       }
-//     }}
-//     bezier
-//     style={{
-//       marginVertical: 8,
-//       borderRadius: 16
-//     }}
-//   />
-// </View>
-//   );
-// };
-// const chartConfig = {
-//   backgroundGradientFrom: "#1E2923",
-//   backgroundGradientFromOpacity: 0,
-//   backgroundGradientTo: "#08130D",
-//   backgroundGradientToOpacity: 0.5,
-//   color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
-//   strokeWidth: 2, // optional, default 3
-//   barPercentage: 0.5
-// };
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#004677',
-//     alignItems: 'center',
-//     color:'#000',
-//     justifyContent: 'flex-start',
-//     paddingTop:50
-//   },
-//   powerBy:{
-//     color:'white',
-//     fontSize:24,
-//     paddingBottom:50
-// }
-// });
-// export default App;
+        if ($parsed_url["path"] == "youtube.com/watch") {
+            $url = "https://www." . $video_url;
+        } elseif ($parsed_url["path"] == "www.youtube.com/watch") {
+            $url = "https://" . $video_url;
+        } elseif ($parsed_url["path"] == "/watch") {
+            $url = "https://" . $video_url;
+        } else {
+            $url = explode('/', $parsed_url['path'])[1];
+            return $url;
+        }
+        if (isset($parsed_url["query"])) {
+            $query_string = $parsed_url["query"];
+            parse_str($query_string, $query_arr);
+            if (isset($query_arr["v"])) {
+                return $query_arr["v"];
+            }
+        }
+    }
 
+    public static function getVideoInfo($url)
+    {
+        return file_get_contents("https://www.youtube.com/get_video_info?video_id=" . HelperController::extractVideoId($url) . "&cpn=CouQulsSRICzWn5E&eurl&el=adunit");
+    }
+
+    public static function getVideoDownloadLink($url)
+    {
+        parse_str(HelperController::getVideoInfo($url), $data);
+        $videoData = json_decode($data['player_response'], true);
+        $videoDetails = $videoData['videoDetails'];
+        $streamingData = $videoData['streamingData'];
+        $streamingDataFormats = $streamingData['formats'];
+        $video_title = $videoDetails["title"];
+        $final_stream_map_arr = array();
+        foreach ($streamingDataFormats as $stream) {
+            $stream_data = $stream;
+            $stream_data["title"] = $video_title;
+            $stream_data["mime"] = $stream_data["mimeType"];
+            $mime_type = explode(";", $stream_data["mime"]);
+            $stream_data["mime"] = $mime_type[0];
+            $start = stripos($mime_type[0], "/");
+            $format = ltrim(substr($mime_type[0], $start), "/");
+            $stream_data["format"] = $format;
+            $stream_data['qualityLabel'] = $stream['qualityLabel'];
+            unset($stream_data["mimeType"]);
+            $final_stream_map_arr[] = $stream_data;
+        }
+        return $final_stream_map_arr;
+    }
 }

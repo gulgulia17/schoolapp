@@ -11,26 +11,23 @@ class HomeWorkControllerApi extends Controller
 {
     public function store(Request $request)
     {
-        HomeWork::create($this->ValidateRequest());
-        $temp = "your HomeWork is Submit!! Thank You";
-        return  json_encode($temp);
+        $this->storedImage(HomeWork::create([
+            'student_id' => $request->student_id,
+            'title' => $request->title,
+            'description' => $request->description,
+            'file' => $request->file,
+        ]));
+        $data['message'] = "Thankyou your homework is submitted successfully.";
+        $data['status'] = 200;
+        return  json_encode($data);
     }
 
-    private function ValidateRequest()
-    {
-        return Request()->validate([
-            'student_id'  => 'string | required',
-            'title'       => 'string | required',
-            'description' => 'string | required',
-            'file'        => 'string | required',
-        ]);
-    }
     protected function storedImage($paper)
     {
         if (request()->hasfile('file')) {
             $file = request()->file('file');
             $extension = $file->getClientOriginalExtension();
-            $filename = "/file/studentDetails/" . time() . '.' . $extension;
+            $filename = time() . '.' . $extension;
             $file->move(public_path("../public/file/homework"), $filename);
             $paper->file = $filename;
             $paper->save();
