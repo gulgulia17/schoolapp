@@ -78,7 +78,15 @@
                                   <input type="radio" required name="gender" value="F" id="gender" value="{{old('gender')}}"> Female
                             </div>
                         </div>
-
+                        <div class="form-group">
+                          <label for="">If Teacher has a Class Teacher then Choose Class</label>
+                          <select name="class_id" id="class_id" class="form-control">
+                            <option disabled selected>Please select class</option>
+                            @foreach ($clas as $item)
+                            <option value="{{$item->id}}">{{$item->class}}</option>
+                            @endforeach
+                        </select>
+                        </div>
                         <div class="form-group row">
                             <div class="col-md-8">
                                 <label for="address">Enter Full Address</label>

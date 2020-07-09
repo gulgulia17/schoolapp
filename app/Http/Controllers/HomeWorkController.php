@@ -38,6 +38,11 @@ class HomeWorkController extends Controller
     public function store(Request $request)
     {
         $data =  Homework::where('class_id' , $request->classes)->get();
+            // foreach ($data as $key => $value) {
+            //     dd($value->student->name);
+                
+            // }
+            // dd(response()->json($data));
         if(empty($data)){
             return "Data Not Found";
         }else{

@@ -28,6 +28,10 @@ class student extends Model
     {
        return $this->hasMany(FeeRecord::class);
     }
+    public function homework()
+    {
+       return $this->hasMany(Homework::class);
+    }
    
 }
 

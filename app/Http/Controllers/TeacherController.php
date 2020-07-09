@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
+use App\classes;
 use App\Teacher;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class TeacherController extends Controller
 {
@@ -25,7 +28,8 @@ class TeacherController extends Controller
      */
     public function create()
     {
-        return view('/teacher.create'); 
+        $clas = classes::all();
+        return view('/teacher.create', compact('clas')); 
     }
 
     /**
@@ -38,6 +42,12 @@ class TeacherController extends Controller
     {
         $added=Teacher::create($this->validateRequest());
         $this->storedImage($added);
+        $userLog =  User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make("teacher123"),
+            'status' => 1,
+        ]);
         return redirect('/teacher')->with('status', 'New Create Added');
     }
 
@@ -108,6 +118,7 @@ class TeacherController extends Controller
                 'sub'      => 'required|string',
                 'address'  => 'required|string',
                 'images'  => '',
+                'class_id'  => 'string',
         ]);
     }
     protected function storedImage($paper)
@@ -121,4 +132,5 @@ class TeacherController extends Controller
             $paper->save();
         }
     }
+    
 }

@@ -16,12 +16,21 @@
                     <div class="card-tool col-6">
                         <form action="/attendance/check" method="post">
                             @csrf
+                            @if (auth()->user()->status==0)
                             <select class="form-control"  name="class_id" id="class">
                                 <option value="Select Class" class="selet">Select Class</option>
                                 @foreach ($clas as $item)
                                     <option value="{{$item->id}}">{{$item->class}}</option>
                                 @endforeach
-                            </select>
+                            </select>    
+                            @else
+                                <input type="text" name="class_id" hidden id="teacherlog" value="{{$teacher->class_id}}">
+                                @foreach ($clas as $item)
+                                    @if ($teacher->class_id == $item->id)
+                                        <input type="text" disabled name="date" value="{{$item->class}}" class="form-control">
+                                    @endif
+                                @endforeach
+                            @endif
                         </form>
                     </div>
                 </div>
@@ -55,9 +64,17 @@
         $("#checkAll").click(function(){
             $('input:checkbox').not(this).prop('checked', this.checked);
         });
+        @if (auth()->user()->status == 0)
         $('#class').change(function(e){
             const class_id = $(this).val();
             const _token = $('input[name="_token"]').val();
+        @else
+        $(document).ready(function() {
+            const class_id = $('#teacherlog').val();
+            const _token = $('input[name="_token"]').val();
+        setTimeout(function() {
+        jQuery.support.cors = true;
+        @endif
             $.ajax({
                 type: "post",
                 url: "/attendance/check",
@@ -88,6 +105,9 @@
                 }
             });
         });
+        @if (auth()->user()->status == 1)
+    },3000);
+        @endif
     </script>
     <script>
         $(document).ready(function(){

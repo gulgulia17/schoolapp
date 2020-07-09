@@ -25,6 +25,7 @@ class CreateTeachersTable extends Migration
             $table->string('exp');
             $table->string('sub');
             $table->string('address');
+            $table->string('class_id')->nullable();
             $table->string('images');
             $table->timestamps();
             $table->SoftDeletes();

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\classes;
 use App\student;
+use App\Teacher;
 use App\attendance;
 use Illuminate\Http\Request;
 
@@ -18,7 +19,8 @@ class AttendanceController extends Controller
     public function index()
     {
         $clas= classes::all();
-        return view('/attendance.show', compact('clas'));
+        $teacher = Teacher::where('email', Auth()->user()->email)->first();
+        return view('/attendance.show', compact('clas','teacher'));
     }
 
     /**

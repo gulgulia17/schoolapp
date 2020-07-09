@@ -4,15 +4,6 @@ namespace App\Http\Controllers;
 
 class HelperController extends Controller
 {
-<<<<<<< HEAD
-    public function download()
-    {
-        $filename = "http://aps.schoolapp.info/apk/app-release.apk";
-        header('Content-Type: application/octet-stream');
-        header("Content-Transfer-Encoding: Binary"); 
-        header("Content-disposition: attachment; filename=\"" . basename($filename) . "\""); 
-        readfile($filename); 
-=======
     public static function extractVideoId($video_url)
     {
         $parsed_url = parse_url($video_url);
@@ -64,6 +55,13 @@ class HelperController extends Controller
             $final_stream_map_arr[] = $stream_data;
         }
         return $final_stream_map_arr;
->>>>>>> b3dd90ea451fdf55050152efbc33cb7fd5f7297f
+    }
+    public function download()
+    {
+        $filename = "http://aps.schoolapp.info/apk/app-release.apk";
+        header('Content-Type: application/octet-stream');
+        header("Content-Transfer-Encoding: Binary"); 
+        header("Content-disposition: attachment; filename=\"" . basename($filename) . "\""); 
+        readfile($filename); 
     }
 }

@@ -22,6 +22,7 @@
                             <div class="form-group">
                                 <label for="time">Class</label>
                                 <input type="date" name="time" id="time" class="form-control">
+                                <button type="submit">ss</button>
                             </div>
                         </div>
                     </form>
@@ -31,7 +32,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <table class="table">
+                    <table class="table" id="data">
                         <thead>
                             <tr>
                                 <th>S.no</th>
@@ -66,22 +67,22 @@
                         $(this).find('td').remove();
                 });
                 console.log(response);
-                
                 if($.isArray(response)){
-                    for (let index = 0; index < response.length; index++) {
-                        const element = response[index];
-                        console.log(element);
+                    // for (let index = 0; index < response.length; index++) {
+                        // const val = response[index];
+                        // console.log(element);
+                        $.each(response, function (key, val) {
                         var input =
-                        '<tr><td>'+element.student_id+'</td>'+
+                        '<tr><td>'+val.student.name+'</td>'+
                         '<td><div class="form-group">'+
                         '<div class="custom-control custom-switch">'+
-                        '<input type="checkbox" class="custom-control-input" id="customSwitch'+element.id+'" name="attendance['+index+']" value="P">'+
-                        '<label class="custom-control-label" for="customSwitch'+element.id+'"></label>'+
+                        '<input type="checkbox" class="custom-control-input" id="customSwitch'+val.id+'" name="attendance['+key+']" value="P">'+
+                        '<label class="custom-control-label" for="customSwitch'+val.id+'"></label>'+
                         '</div>'+
                         '</div></td>'+
                         "<td><input type='text' class='form-control' placeholder='Enter Reason for Absent' name='reason[]'></td></tr>";
                         $('tbody').append(input);
-                    }
+                    });
                 }else{
                     alert(response);
                 }

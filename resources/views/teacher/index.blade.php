@@ -1,4 +1,4 @@
-@extends('layouts.sidebar')
+    @extends('layouts.sidebar')
 @section('breadcrumbs')
 {{ Breadcrumbs::render('teacher') }}
 @endsection

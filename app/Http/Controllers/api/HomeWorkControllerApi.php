@@ -23,23 +23,6 @@ class HomeWorkControllerApi extends Controller
         return  json_encode($data);
     }
 
-<<<<<<< HEAD
-    private function ValidateRequest()
-    {
-        $class_id = student::where('id', request()->student_id)->first();
-        $data = Request()->validate([
-            'student_id'  => 'string | required',
-            'title'       => 'string | required',
-            'description' => 'string | required',
-            'file'        => 'string | required',
-            'class_id'    => 'string | required',
-        ]);
-        $data['class_id'] = $class_id->class_id;
-        dd($data);
-        return $data;
-    }
-=======
->>>>>>> b3dd90ea451fdf55050152efbc33cb7fd5f7297f
     protected function storedImage($paper)
     {
         if (request()->hasfile('file')) {

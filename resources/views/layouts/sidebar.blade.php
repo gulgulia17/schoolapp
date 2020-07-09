@@ -153,7 +153,8 @@
             <div class="sidebar">
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                        data-accordion="false">
+                    data-accordion="false">
+                    @if (Auth()->user()->status == 0)
                         <li class="nav-item">
                             <a href="/home" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
@@ -349,7 +350,6 @@
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
-
                                 <li class="nav-item">
                                     <a href="/result" class="nav-link ">
                                         <i class="fas fa-circle nav-icon"></i>
@@ -458,7 +458,48 @@
                                 </p>
                             </a>
                         </li>
-                    </ul>
+                    @else
+                        <li class="nav-item has-treeview">
+                            <a href="" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>
+                                    Result
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+
+                                <li class="nav-item">
+                                    <a href="/result" class="nav-link ">
+                                        <i class="fas fa-circle nav-icon"></i>
+                                        <p>Show Result</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item has-treeview">
+                            <a href="/attendance" class="nav-link">
+                                <i class="fas fa-circle nav-icon"></i>
+                                <p>Daily Attendance</p>
+                            </a>
+                        </li>
+                        <li class="nav-item has-treeview">
+                            <a href="/homework" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>
+                                    HomeWork
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item has-treeview">
+                            <a href="/video/create" class="nav-link ">
+                                <i class="fas fa-circle nav-icon"></i>
+                                <p>Create Video Class</p>
+                            </a>
+                        </li>
+                    </ul>    
+                     
+                    @endif
                 </nav>
             </div>
         </aside>
